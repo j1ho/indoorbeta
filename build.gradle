@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.indoorBeta'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Core Spring Boot dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'    // For database interaction (JPA/Hibernate)
+	implementation 'org.springframework.boot:spring-boot-starter-security'   // For authentication and security
+	implementation 'org.springframework.boot:spring-boot-starter-web'        // For creating REST APIs
+
+	// Additional dependencies you may need
+	implementation 'org.springframework.boot:spring-boot-starter-validation' // For validating user inputs
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'  // Optional: If you're using Thymeleaf for web pages
+	implementation 'org.springframework.boot:spring-boot-starter-mail'       // Optional: For email notifications
+	runtimeOnly 'org.postgresql:postgresql'                                  // Postgres database driver (replace if using a different DB)
+
+	// Testing dependencies
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
